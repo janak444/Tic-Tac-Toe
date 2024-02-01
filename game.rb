@@ -2,12 +2,12 @@
 PLAYER1 = 'X'||'x'
 PLAYER2 = 'O'||'o'
 
+#Choice of size of the board
+puts "Enter the size of the board"
+$size = gets.chomp.to_i
+
 #Defining the board
-@board = [
-    [0,0,0],
-    [0,0,0],
-    [0,0,0]
-]
+@board = Array.new($size){Array.new($size)}
 
 #Check whether the state is empty or not?
 def empty_cells(state)
@@ -28,7 +28,7 @@ end
 # To make a 3x3 board
 def render(state, player1_choice, player2_choice)
     state.each_with_index do |row, x|
-      puts "\n-------------------------"
+      puts "\n-----------------------------------------------------------------------------"
       row.each_with_index do |cell, y|
         if cell == PLAYER1
           print "| #{player1_choice} |"
@@ -39,7 +39,7 @@ def render(state, player1_choice, player2_choice)
         end
       end
     end
-    puts "\n-------------------------"
+    puts "\n----------------------------------------------------------------------------"
 end
 
 #Evaluate moves
@@ -55,18 +55,42 @@ end
 
 #Winning states define, to evaluate who win the games
 def wins(state, player)
-    win_state = [
-      [state[0][0], state[0][1], state[0][2]],
-      [state[1][0], state[1][1], state[1][2]],
-      [state[2][0], state[2][1], state[2][2]],
-      [state[0][0], state[1][0], state[2][0]],
-      [state[0][1], state[1][1], state[2][1]],
-      [state[0][2], state[1][2], state[2][2]],
-      [state[0][0], state[1][1], state[2][2]],
-      [state[2][0], state[1][1], state[0][2]]
-    ]
+    win_state = []
+      n = $size-1
+      for i in 0..n
+        row =[]
+        for j in 0..n
+          row << state[i][j]
+        end
+      win_state << row
+      end
+      for i in 0..n
+        column = []
+        for j in 0..n
+          column << state[j][i]
+        end
+        win_state << column
+      end
+      diagonal1 =[]
+      for i in 0..n
+        for j in 0..n
+          if i==j
+           diagonal1 << state[i][j]  
+          end
+        end
+      end
+      win_state << diagonal1
+      diagonal2 = []
+      for i in 0..n
+        for j in 0..n
+          if i+j==n
+          diagonal2 << state[i][j]
+          end  
+        end
+      end
+      win_state << diagonal2
   
-    win_state.include? [player, player, player]
+    win_state.include?Array.new($size,player)
 end
 
 #Game hault conditions
