@@ -4,7 +4,14 @@ PLAYER2 = 'O'||'o'
 
 #Choice of size of the board
 puts "Enter the size of the board"
-$size = gets.chomp.to_i
+loop do
+  $size = gets.chomp.to_i
+  if $size<3 || $size>10
+    puts "please enter the size between 3 and 10"
+  end
+  
+  break if $size>2 && $size<11
+end
 
 #Defining the board
 @board = Array.new($size){Array.new($size)}
