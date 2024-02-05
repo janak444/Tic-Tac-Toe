@@ -1,4 +1,3 @@
-
 require_relative 'board'
 class State
   def initialize(board)
@@ -44,17 +43,17 @@ class State
     win_state.include? Array.new(board.size, player)
   end
 
-  def game_over
+  def is_game_over?
     wins(@board, Player::PLAYER1) || wins(@board, Player::PLAYER2) || @board.empty_cells.empty?
   end
 
-    def result_declaration(board)
-      if wins(board, Player::PLAYER1)
-        puts "Player #{Player::PLAYER1} wins"
-      elsif wins(board, Player::PLAYER2)
-        puts "Player #{Player::PLAYER2} wins"
-      else
-        puts "It's a draw"
-      end
+  def declare_result(board)
+    if wins(board, Player::PLAYER1)
+      puts "Player #{Player::PLAYER1} wins"
+    elsif wins(board, Player::PLAYER2)
+      puts "Player #{Player::PLAYER2} wins"
+    else
+      puts "It's a draw"
     end
+  end
 end

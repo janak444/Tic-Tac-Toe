@@ -19,14 +19,14 @@ class Moves
   end
 
   def loop_until_game_finished
-    until @state.game_over
+    until @state.is_game_over?
       @board.render(Player::PLAYER1, Player::PLAYER2)
 
       player_turn(Player::PLAYER1)
 
       @board.render(Player::PLAYER1, Player::PLAYER2)
-     if @state.game_over
-          @state.result_declaration(@board)
+     if @state.is_game_over?
+        @state.declare_result(@board)
         break
      end
 
