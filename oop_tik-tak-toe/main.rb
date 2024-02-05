@@ -1,4 +1,4 @@
-# main.rb
+
 require_relative 'board'
 require_relative 'state'
 require_relative 'player'
@@ -17,30 +17,15 @@ class Main
     end
 
     @board = Board.new(@size)
-    @state = State.new(@board)
     @player = Player.new
     @moves = Moves.new(@board)
   end
 
   def run_game
-    @moves.loops_until_game_finished
+    @moves.loop_until_game_finished
 
-    # Shows out the final state of the table
-    @board.render(Player::PLAYER1, Player::PLAYER2)
-
-    # Check the result
-    result = @state.evaluate(@board)
-
-    case result
-    when 1
-      puts "Player #{Player::PLAYER1} wins!"
-    when -1
-      puts "Player #{Player::PLAYER2} wins!"
-    else
-      puts "It's a draw!"
-    end
+    @board.render(Player::PLAYER1, Player::PLAYER2) 
   end
 end
-
-
+            
 Main.new.run_game

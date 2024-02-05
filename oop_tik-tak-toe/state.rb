@@ -48,14 +48,13 @@ class State
     wins(@board, Player::PLAYER1) || wins(@board, Player::PLAYER2) || @board.empty_cells.empty?
   end
 
-    def evaluate(board)
-      puts board.inspect
+    def result_declaration(board)
       if wins(board, Player::PLAYER1)
-        1
+        puts "Player #{Player::PLAYER1} wins"
       elsif wins(board, Player::PLAYER2)
-        -1
+        puts "Player #{Player::PLAYER2} wins"
       else
-        0
+        puts "It's a draw"
       end
     end
 end
