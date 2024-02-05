@@ -32,10 +32,12 @@ class Board
     end
     false
   end
-
+  
   def empty_cells
     @board.each_with_index.flat_map do |row, x|
       row.each_with_index.map { |cell, y| [x, y, "#{x}#{y}"] if cell.nil?}
     end.compact
   end
 end
+
+

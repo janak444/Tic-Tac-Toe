@@ -1,4 +1,3 @@
-
 class Moves
   def initialize(board)
     @board = board
