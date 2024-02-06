@@ -8,7 +8,7 @@ class State
     @board = board
   end
 
-  def wins(board, player)
+  def wins(board, player) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     win_state = []
     n = board.size - 1
     (0..n).each do |i|

@@ -8,7 +8,7 @@
   // "ruby.rubocop.executePath": "D:/bin/Ruby22-x64/bin/"
 
   // If not specified, it assumes a null value by default.
-  "ruby.rubocop.configFilePath": "/path/to/config/.rubocop.yml",
+  "ruby.rubocop.configFilePath": "/home/janak/Desktop/Tic-Tac-Toe/oop_tik-tak-toe/rubocop.yml",
 
   // default true
   "ruby.rubocop.onSave": true,
@@ -24,10 +24,6 @@
     "\"key\": \"ctrl+alt+l\",          \"command\": \"ruby.rubocopAutocorrect\",                                 \"when\": \"editorLangId == 'ruby'\""
   ],
   "json.schemas": [
-    {
-      "key": "ctrl+alt+l",
-      "command": "ruby.rubocopAutocorrect",
-      "when": "editorLangId == 'ruby'"
-    }
+    
   ]
 }

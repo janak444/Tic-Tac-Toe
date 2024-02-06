@@ -1,0 +1,13 @@
+# Set the target Ruby version
+AllCops:
+  TargetRubyVersion: 3.3.0
+
+# Customize cops
+Layout/LineLength:
+  Max: 100
+Style/HashSyntax:
+  EnforcedStyle: ruby19 
+
+# Disable certain cops
+Metrics/MethodLength:
+  Enabled: false 
