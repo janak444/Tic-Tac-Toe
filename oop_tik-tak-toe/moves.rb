@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# moves class call the board and state class, check the state of the board anf runs until the results of the game occur.
 class Moves
   def initialize(board)
     @board = board
@@ -6,28 +9,28 @@ class Moves
 
   def player_turn(player)
     puts "Player #{player} (#{player}), enter your move (row and column separated by a space):"
-    print "> "
+    print '> '
     move = gets.chomp.split.map(&:to_i)
 
     if @board.set_move(move[0], move[1], player)
-      puts "Move accepted!"
+      puts 'Move accepted!'
     else
-      puts "Invalid move. Try again."
+      puts 'Invalid move. Try again.'
       player_turn(player)
     end
   end
 
   def loop_until_game_finished
-    until @state.is_game_over?
+    until @state.game_over?
       @board.render(Player::PLAYER1, Player::PLAYER2)
 
       player_turn(Player::PLAYER1)
 
       @board.render(Player::PLAYER1, Player::PLAYER2)
-     if @state.is_game_over?
+      if @state.game_over?
         @state.declare_result(@board)
         break
-     end
+      end
 
       player_turn(Player::PLAYER2)
     end

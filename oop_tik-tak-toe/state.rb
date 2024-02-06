@@ -1,49 +1,47 @@
+# frozen_string_literal: true
+
 require_relative 'board'
+
+# It consists of states through which it check the state and update the states while players update the moves.
 class State
   def initialize(board)
     @board = board
   end
 
-  def wins(board,player)
+  def wins(board, player)
     win_state = []
     n = board.size - 1
-        for i in 0..n
-          row =[]
-          for j in 0..n
-            row << board.cell_value(i,j)
-          end
-        win_state << row
-        end
-        for i in 0..n
-          column = []
-          for j in 0..n
-            column << board.cell_value(j,i)
-          end
-          win_state << column
-        end
-        diagonal1 =[]
-        for i in 0..n
-          for j in 0..n
-            if i==j
-             diagonal1 << board.cell_value(i,j)  
-            end
-          end
-        end
-        win_state << diagonal1
-        diagonal2 = []
-        for i in 0..n
-          for j in 0..n
-            if i+j==n
-            diagonal2 << board.cell_value(i,j)
-            end  
-          end
-        end
-        win_state << diagonal2
- 
+    (0..n).each do |i|
+      row = []
+      (0..n).each do |j|
+        row << board.cell_value(i, j)
+      end
+      win_state << row
+      column = []
+      (0..n).each do |j|
+        column << board.cell_value(j, i)
+      end
+      win_state << column
+    end
+    diagonal1 = []
+    (0..n).each do |i|
+      (0..n).each do |j|
+        diagonal1 << board.cell_value(i, j) if i == j
+      end
+    end
+    win_state << diagonal1
+    diagonal2 = []
+    (0..n).each do |i|
+      (0..n).each do |j|
+        diagonal2 << board.cell_value(i, j) if i + j == n
+      end
+    end
+    win_state << diagonal2
+
     win_state.include? Array.new(board.size, player)
   end
 
-  def is_game_over?
+  def game_over?
     wins(@board, Player::PLAYER1) || wins(@board, Player::PLAYER2) || @board.empty_cells.empty?
   end
 
