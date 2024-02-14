@@ -37,7 +37,6 @@ class State
       end
     end
     win_state << diagonal2
-
     win_state.include? Array.new(board.size, player)
   end
 

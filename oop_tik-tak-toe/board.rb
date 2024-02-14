@@ -14,13 +14,15 @@ class Board
   end
 
   def render(p1_choice, p2_choice)
-    @board.each_with_index do |row, x|
+    count = 0
+    @board.each_with_index do |row, _x|
       puts "\n......................................................................................"
-      row.each_with_index do |cell, y|
+      row.each_with_index do |cell, _y|
+        count += 1
         print(if cell == Player::PLAYER1
                 "| #{p1_choice} |"
               else
-                (cell == Player::PLAYER2 ? "| #{p2_choice} |" : "| #{x} #{y} |")
+                (cell == Player::PLAYER2 ? "| #{p2_choice} |" : "| #{count}|")
               end)
       end
     end
